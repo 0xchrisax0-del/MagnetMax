@@ -10,19 +10,19 @@ public class ObstacleSpawner : MonoBehaviour
     
     void Start()
     {
-        if (!enabled)
-        {
-            return;
-        }
+        if (!enabled) return;
 
         InvokeRepeating("Spawn", 2f, 1f);
-        InvokeRepeating("SpawnPowerUp", 1.5f, 20f); // Testing purposes...
     }
 
     void Spawn()
     {
         Vector2 spawnPoint = spawnPos.transform.position;
         Instantiate(obstacles[Random.Range(0, obstacles.Length)], spawnPoint, spawnPos.transform.rotation);
+
+        float powerUpChance = 0.15f;
+
+        if (Random.value < powerUpChance) SpawnPowerUp();
     }
 
     void SpawnPowerUp() // Whole method for testing purposes as well...
