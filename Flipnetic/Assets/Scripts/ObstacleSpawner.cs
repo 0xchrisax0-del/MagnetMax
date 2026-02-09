@@ -7,17 +7,19 @@ public class ObstacleSpawner : MonoBehaviour
     public GameObject[] obstacles;
     public GameObject shieldPowerUp; // Placed for testing purposes...
     public Transform spawnPos;
-    
+
+    Vector2 spawnPoint;
+
     void Start()
     {
         if (!enabled) return;
+        spawnPoint = spawnPos.transform.position;
 
         InvokeRepeating("Spawn", 2f, 1f);
     }
 
     void Spawn()
     {
-        Vector2 spawnPoint = spawnPos.transform.position;
         Instantiate(obstacles[Random.Range(0, obstacles.Length)], spawnPoint, spawnPos.transform.rotation);
 
         float powerUpChance = 0.15f;
@@ -27,7 +29,6 @@ public class ObstacleSpawner : MonoBehaviour
 
     void SpawnPowerUp() // Whole method for testing purposes as well...
     {
-        Vector2 spawnPoint = spawnPos.transform.position;
         Instantiate(shieldPowerUp, spawnPoint, spawnPos.transform.rotation);
     }
 }
